@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Objetosalmacen index{% endblock %}
+
+{% block body %}
+    <h1>Objetosalmacen index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Descripcion</th>
+                <th>Cantidad</th>
+                <th>Ubicacion</th>
+                <th>Entradaalmacen</th>
+                <th>Salidaalmacen</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for objetosalmacen in objetosalmacens %}
+            <tr>
+                <td>{{ objetosalmacen.id }}</td>
+                <td>{{ objetosalmacen.descripcion }}</td>
+                <td>{{ objetosalmacen.cantidad }}</td>
+                <td>{{ objetosalmacen.ubicacion }}</td>
+                <td>{{ objetosalmacen.entradaalmacen ? objetosalmacen.entradaalmacen|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ objetosalmacen.salidaalmacen ? objetosalmacen.salidaalmacen|date('Y-m-d H:i:s') : '' }}</td>
+                <td>
+                    <a href="{{ path('app_objetosalmacen_show', {'id': objetosalmacen.id}) }}">show</a>
+                    <a href="{{ path('app_objetosalmacen_edit', {'id': objetosalmacen.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_objetosalmacen_new') }}">Create new</a>
+{% endblock %}

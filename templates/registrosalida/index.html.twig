@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Registrosalida index{% endblock %}
+
+{% block body %}
+    <h1>Registrosalida index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Fecha</th>
+                <th>Cantidad</th>
+                <th>Objeto Introducido</th>
+                <th>Usuario de la operación</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for registrosalida in registrosalidas %}
+            <tr>
+                <td>{{ registrosalida.id }}</td>
+                <td>{{ registrosalida.fecha ? registrosalida.fecha|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ registrosalida.cantidad }}</td>
+                <td>{{ registrosalida.objeto }}</td>
+                <td>{{ registrosalida.user }}</td>
+                <td>
+                    <a href="{{ path('app_registrosalida_show', {'id': registrosalida.id}) }}">show</a>
+                    <a href="{{ path('app_registrosalida_edit', {'id': registrosalida.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_registrosalida_new') }}">Create new</a>
+{% endblock %}

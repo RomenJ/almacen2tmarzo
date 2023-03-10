@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Registroentrada{% endblock %}
+
+{% block body %}
+    <h1>Registroentrada</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ registroentrada.id }}</td>
+            </tr>
+            <tr>
+                <th>Fecha</th>
+                <td>{{ registroentrada.fecha ? registroentrada.fecha|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Cantidad</th>
+                <td>{{ registroentrada.cantidad }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_registroentrada_index') }}">back to list</a>
+
+    <a href="{{ path('app_registroentrada_edit', {'id': registroentrada.id}) }}">edit</a>
+
+    {{ include('registroentrada/_delete_form.html.twig') }}
+{% endblock %}

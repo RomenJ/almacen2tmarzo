@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Objetosalmacen{% endblock %}
+
+{% block body %}
+    <h1>Objetosalmacen</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ objetosalmacen.id }}</td>
+            </tr>
+            <tr>
+                <th>Descripcion</th>
+                <td>{{ objetosalmacen.descripcion }}</td>
+            </tr>
+            <tr>
+                <th>Cantidad</th>
+                <td>{{ objetosalmacen.cantidad }}</td>
+            </tr>
+            <tr>
+                <th>Ubicacion</th>
+                <td>{{ objetosalmacen.ubicacion }}</td>
+            </tr>
+            <tr>
+                <th>Entradaalmacen</th>
+                <td>{{ objetosalmacen.entradaalmacen ? objetosalmacen.entradaalmacen|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Salidaalmacen</th>
+                <td>{{ objetosalmacen.salidaalmacen ? objetosalmacen.salidaalmacen|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_objetosalmacen_index') }}">back to list</a>
+
+    <a href="{{ path('app_objetosalmacen_edit', {'id': objetosalmacen.id}) }}">edit</a>
+
+    {{ include('objetosalmacen/_delete_form.html.twig') }}
+{% endblock %}

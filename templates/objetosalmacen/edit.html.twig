@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Objetosalmacen{% endblock %}
+
+{% block body %}
+    <h1>Edit Objetosalmacen</h1>
+
+    {{ include('objetosalmacen/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_objetosalmacen_index') }}">back to list</a>
+
+    {{ include('objetosalmacen/_delete_form.html.twig') }}
+{% endblock %}

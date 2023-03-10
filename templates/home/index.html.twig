@@ -1,0 +1,80 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello HomeController!{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div class="example-wrapper">
+   
+   {% if app.user %}
+         <h6> Usuario registrado : {{ app.user.username }} </h6>
+       {#       <li>Mida el dolor de la sesión <code><a href="{{ path('app_evamax_index') }}"> Realizar Evamax</a></code></li>      #}
+
+
+    {% if is_granted('ROLE_ADMIN') %}
+        
+          <h5> Bienvenid@ Jefe </h5>
+              <h6><a href="{{ path('app_logout') }}">Logout</h6></a> 
+          <h6><a href="{{ path('app_objetosalmacen_new') }}">Crear nuevo objeto de almacén</h6></a>     
+          
+     {% endif %}
+   {# <li>Hola {{ app.user }}"></li>  #}
+      
+   <h5> Bienvenid@ Trabajador </h5>
+     <h6><a href="{{ path('app_logout') }}">Logout</h6></a>
+     <h6><a href="{{ path('app_registroentrada_index') }}"></h6>Entrada de objetos </a>    
+     
+     <h6><a href="{{ path('app_registrosalida_index') }}"></h6>Salida de objetos </a>     
+
+     {% else %}
+      <h6><b>Usuario no registrado </b></h6>  
+
+      <ul>
+          {# <li>REGISTRO <code><a href="{{ path('app_register') }}"> registro</a></code></li>
+        <li>LOGIN <code><a href="{{ path('app_login') }}"> login</a></code></li> #}
+        <li>REGISTRO <code><a href="{{ path('app_register') }}"> registro</a></code></li>
+        <li>LOGIN <code><a href="{{ path('app_login') }}"> login</a></code></li>
+            
+    </ul>
+       {% endif %}
+
+  {#bloque de contenido de objetos  #}
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Descripcion</th>
+                <th>Cantidad</th>
+                <th>Ubicacion</th>
+                <th>Entrada en almacen</th>
+                <th>Salida en almacen</th>
+ 
+            </tr>
+        </thead>
+        <tbody>
+        {% for objetosalmacen in objetosalmacens %}
+            <tr>
+                <td>{{ objetosalmacen.id }}</td>
+                <td>{{ objetosalmacen.descripcion }}</td>
+                <td>{{ objetosalmacen.cantidad }}</td>
+                <td>{{ objetosalmacen.ubicacion }}</td>
+                <td>{{ objetosalmacen.entradaalmacen ? objetosalmacen.entradaalmacen|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ objetosalmacen.salidaalmacen ? objetosalmacen.salidaalmacen|date('Y-m-d H:i:s') : '' }}</td>
+           
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+
+
+</div>
+
+{% endblock %}

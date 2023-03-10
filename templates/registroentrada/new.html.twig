@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Registroentrada{% endblock %}
+
+{% block body %}
+    <h1>Create new Registroentrada</h1>
+
+    {{ include('registroentrada/_form.html.twig') }}
+
+    <a href="{{ path('app_registroentrada_index') }}">back to list</a>
+{% endblock %}
